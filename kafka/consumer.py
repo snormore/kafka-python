@@ -475,6 +475,9 @@ def _mp_consume(client, group, topic, chunk, queue, start, exit, pause, size):
     # Ensure that the consumer provides the partition information
     consumer.provide_partition_info()
 
+    # Seek to latest/tail
+    consumer.seek(0, 2)
+
     while True:
         # Wait till the controller indicates us to start consumption
         start.wait()
